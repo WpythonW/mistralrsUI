@@ -1,6 +1,6 @@
 # Mistral.rs Server Installation and Usage Guide
 
-This guide provides instructions for installing, setting up, and running the Mistral.rs server.
+This guide provides instructions for installing, setting up, and running the Mistral.rs server with UI support.
 
 ## Prerequisites
 
@@ -10,8 +10,8 @@ This guide provides instructions for installing, setting up, and running the Mis
 - pkg-config (Linux only)
 - NVIDIA GPU with CUDA support (for GPU acceleration)
 - NVIDIA CUDA Toolkit 12.6
-- Docker and Docker Compose (for containerized setup)
-- NVIDIA Container Toolkit (for Docker GPU support)
+- Docker and Docker Compose
+- NVIDIA Container Toolkit
 
 ## Installation Steps
 
@@ -24,7 +24,7 @@ sudo apt install libssl-dev pkg-config
 
 ### 2. Install NVIDIA CUDA Toolkit
 
-Before proceeding, ensure you have the NVIDIA CUDA Toolkit 12.6 installed. You can download and install it from the [NVIDIA CUDA Toolkit Archive](https://developer.nvidia.com/cuda-toolkit-archive).
+Before proceeding, ensure you have the NVIDIA CUDA Toolkit 12.6 installed. Download and install it from the [NVIDIA CUDA Toolkit Archive](https://developer.nvidia.com/cuda-toolkit-archive).
 
 ### 3. Install Rust
 
@@ -37,7 +37,7 @@ source $HOME/.cargo/env
 
 ### 4. Install Mistral.rs Python Package
 
-Now that the NVIDIA CUDA Toolkit is installed, you can proceed with the Mistral.rs installation:
+With the NVIDIA CUDA Toolkit installed, proceed with the Mistral.rs installation:
 
 ```bash
 pip install mistralrs-cuda -v
@@ -70,23 +70,9 @@ For specific features, add the appropriate flags:
 cargo install --path mistralrs-server --features <your-chosen-features>
 ```
 
-## Usage
+### 7. Docker Setup for UI
 
-### Running the Server
-
-To run the Mistral.rs server, use the following command:
-
-```bash
-./mistralrs-server -p 1234 plain --model-id microsoft/Phi-3-mini-128k-instruct --arch phi3
-```
-
-This command starts the server on port 1234 using the Phi-3-mini-128k-instruct model with the phi3 architecture.
-
-### Docker Setup
-
-For a containerized setup with GPU support, follow these steps:
-
-1. Install Docker (if not already installed):
+1. Install Docker:
 
 ```bash
 curl https://get.docker.com | sh
@@ -130,17 +116,19 @@ Ensure you have the following files in your project directory:
 docker-compose up -d
 ```
 
-This command will build the containers for both the model server and the UI, and start them in detached mode.
+This command builds the containers for both the model server and the UI, and starts them in detached mode.
 
-## Note
+## Usage
 
-For more detailed information on running Docker containers, please refer to the official Docker documentation: https://docs.docker.com/engine/reference/run/
+### Running the Server
 
-Refer to the API documentation and integration guides for more advanced usage of the Mistral.rs server in your projects.
+To run the Mistral.rs server, use the following command:
 
-# Mistral.rs Server Installation and Usage Guide
+```bash
+./mistralrs-server -p 1234 plain --model-id microsoft/Phi-3-mini-128k-instruct --arch phi3
+```
 
-[... Previous content remains unchanged ...]
+This command starts the server on port 1234 using the Phi-3-mini-128k-instruct model with the phi3 architecture.
 
 ## Running Services and Ports
 
@@ -149,7 +137,7 @@ After successful installation and launch, the following services will be availab
 1. Mistral.rs Server (model):
    - Port: 1234
    - URL: http://localhost:1234
-   - Description: This is the main Mistral.rs server that handles model requests.
+   - Description: The main Mistral.rs server that handles model requests.
 
 2. UI (user interface):
    - Port: 7860
@@ -161,3 +149,9 @@ To access these services:
 - To access the web interface, open in your browser: http://localhost:7860
 
 Note: If you're running these services on a remote server, replace "localhost" with your server's IP address or domain name.
+
+## Additional Resources
+
+For more detailed information on running Docker containers, refer to the official Docker documentation: https://docs.docker.com/engine/reference/run/
+
+For advanced usage of the Mistral.rs server in your projects, consult the API documentation and integration guides.
