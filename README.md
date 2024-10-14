@@ -125,7 +125,7 @@ This command builds the containers for both the model server and the UI, and sta
 To run the Mistral.rs server, use the following command:
 
 ```bash
-./mistralrs-server -p 1234 --isq Q4K plain --model-id microsoft/Phi-3-mini-128k-instruct --arch phi3
+./mistralrs-server -p 1234 --isq Q4K -i plain --model-id microsoft/Phi-3-mini-128k-instruct --arch phi3
 ```
 
 This command starts the server on port 1234 using the Phi-3-mini-128k-instruct model with the phi3 architecture.
