@@ -45,4 +45,4 @@ COPY --from=builder /mistralrs/target/release/mistralrs-server /usr/local/bin/mi
 RUN chmod +x /usr/local/bin/mistralrs-server
 
 # Запуск сервера
-ENTRYPOINT ["mistralrs-server", "--port", "1234","--isq", "Q4K", "plain", "--model-id","microsoft/Phi-3-mini-128k-instruct", "--arch","phi3"]
+ENTRYPOINT ["mistralrs-server", "--port", "1234","--isq", "Q4K", "-i", "plain", "--model-id","microsoft/Phi-3-mini-128k-instruct", "--arch","phi3"]
