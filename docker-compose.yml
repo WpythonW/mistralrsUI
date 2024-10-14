@@ -1,0 +1,25 @@
+services:
+  model:
+    build:
+      context: .
+      dockerfile: model.Dockerfile
+    ports:
+      - "1234:1234"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  ui:
+    build:
+      context: .
+      dockerfile: ui.Dockerfile
+    ports:
+      - "7860:7860"
+    environment:
+      - API_URL=http://model:1234/v1/chat/completions
+    depends_on:
+      - model
